@@ -8,9 +8,43 @@
 import SwiftUI
 
 struct ContentView: View {
+    
+    let blueGradientColor: [Color] = [Color(hex: 0xB2E3FF), Color(hex: 0x00A3FF)]
+    let yellowGradientColor: [Color] = [Color(hex: 0xFFED90), Color(hex: 0xFFB800)]
+    
     var body: some View {
-        Text("Hello, world!")
-            .padding()
+        NavigationView {
+            VStack {
+                LottieView("faceScan")
+                    .frame(height: UIScreen.main.bounds.height / 3)
+                
+                Spacer()
+                
+                Text("얼굴 나이 분석 테스트")
+                    .foregroundColor(Color(hex: 0x303030))
+                    .font(.title)
+                    .bold()
+                    .padding()
+                
+                Text("AI를 이용해 현재 얼굴 나이를 측정해보세요.\n아래 버튼을 활용하여 카메라로 현재 모습을 촬영하거나 갤러리의 사진을 이용해 측정할 수 있습니다.")
+                    .foregroundColor(Color(hex: 0x303030))
+                    .multilineTextAlignment(.center)
+                
+                Spacer()
+                
+                NavigationLink(destination: {
+                    Text("Camera")
+                }, label: {
+                    CustomButtonView(title: "카메라로 촬영하기", description: "갤러리에서 가져오기", color: Color.blue)
+                })
+                
+                NavigationLink(destination: {
+                    Text("Gallery")
+                }, label: {
+                    CustomButtonView(title: "갤러리에서 가져오기", description: "갤러리의 사진으로 나이를 측정하세요", color: Color.yellow)
+                })
+            }
+        }
     }
 }
 
