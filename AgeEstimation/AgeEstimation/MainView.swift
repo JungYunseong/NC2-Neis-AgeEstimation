@@ -12,6 +12,8 @@ struct MainView: View {
     let blueGradientColor: [Color] = [Color(hex: 0xB2E3FF), Color(hex: 0x00A3FF)]
     let yellowGradientColor: [Color] = [Color(hex: 0xFFED90), Color(hex: 0xFFB800)]
     
+    @State var capturedImage: UIImage? = nil
+    
     var body: some View {
         NavigationView {
             VStack {
@@ -33,7 +35,7 @@ struct MainView: View {
                 Spacer()
                 
                 NavigationLink(destination: {
-                    Text("Camera")
+                    CaptureView(capturedImage: $capturedImage)
                 }, label: {
                     CustomButtonView(title: "카메라로 촬영하기", description: "갤러리에서 가져오기", color: Color.blue)
                 })
@@ -43,8 +45,11 @@ struct MainView: View {
                 }, label: {
                     CustomButtonView(title: "갤러리에서 가져오기", description: "갤러리의 사진으로 나이를 측정하세요", color: Color.yellow)
                 })
+                
+                Spacer()
             }
         }
+        .navigationBarHidden(true)
     }
 }
 
@@ -84,7 +89,7 @@ struct CustomButtonView: View {
         .frame(height: 80)
         .cornerRadius(25)
         .shadow(color: Color(hex: color == Color.blue ? 0x00A3FF : 0xFFB800).opacity(0.15), radius: 20, x: 10, y: 10)
-        .padding(.horizontal)
+        .padding([.horizontal, .bottom])
     }
 }
 
