@@ -15,6 +15,7 @@ class CameraService {
     
     var session: AVCaptureSession?
     var delegate: AVCapturePhotoCaptureDelegate?
+    var isFront: Bool = true
     
     func start(delegate: AVCapturePhotoCaptureDelegate, completion: @escaping (Error?) -> ()) {
         self.delegate = delegate
@@ -45,7 +46,7 @@ class CameraService {
         
         let session = AVCaptureSession()
         
-        if let device = AVCaptureDevice.default(for: .video) {
+        if let device = AVCaptureDevice.default(.builtInWideAngleCamera, for: .video, position: isFront ? .front : .back) {
             do {
                 let input = try AVCaptureDeviceInput(device: device)
                 if session.canAddInput(input) {
@@ -59,7 +60,7 @@ class CameraService {
                 
                 session.startRunning()
                 self.session = session
-            } catch  {
+            } catch {
                 completion(error)
             }
         }
@@ -68,4 +69,33 @@ class CameraService {
     func capturePhoto(with settings: AVCapturePhotoSettings = AVCapturePhotoSettings()) {
         output.capturePhoto(with: settings, delegate: delegate!)
     }
+    
+    func changeCameraPosition() {
+        self.isFront.toggle()
+        
+        let session = AVCaptureSession()
+        
+        if let device = AVCaptureDevice.default(.builtInWideAngleCamera, for: .video, position: isFront ? .front : .back) {
+            do {
+                let input = try AVCaptureDeviceInput(device: device)
+                if session.canAddInput(input) {
+                    session.addInput(input)
+                }
+                
+                if session.canAddOutput(output) {
+                    session.addOutput(output)
+                }
+                previewLayer.videoGravity = .resizeAspectFill
+                previewLayer.session = session
+                
+                session.startRunning()
+                self.session = session
+            } catch {
+                print(error)
+            }
+        }
+        
+        print(isFront)
+    }
 }
+
