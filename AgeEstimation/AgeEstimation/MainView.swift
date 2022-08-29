@@ -75,7 +75,7 @@ struct CustomButtonView: View {
                 
                 Image(systemName: "chevron.right")
                     .font(.largeTitle)
-                    .frame(width: .infinity, height: .infinity)
+                    .frame(height: 60)
                     .foregroundColor(Color.white)
                     .padding()
                     .padding(.trailing)
