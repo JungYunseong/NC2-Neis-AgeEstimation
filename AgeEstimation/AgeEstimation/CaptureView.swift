@@ -13,24 +13,32 @@ struct CaptureView: View {
     
     @Binding var capturedImage: UIImage?
     
-    @State var openGallery = true
+    @State var openGallery = false
     @State var selectedImage = UIImage()
+    @State var isLoading: Bool = false
     
     var body: some View {
         VStack {
-            CameraView(cameraService: cameraService) { result in
-                switch result {
-                case .success(let photo):
-                    if let data = photo.fileDataRepresentation() {
-                        capturedImage = UIImage(data: data)
-                    } else {
-                        print("Error: no image data found")
+            ZStack {
+                CameraView(cameraService: cameraService) { result in
+                    switch result {
+                    case .success(let photo):
+                        if let data = photo.fileDataRepresentation() {
+                            capturedImage = UIImage(data: data)
+                        } else {
+                            print("Error: no image data found")
+                        }
+                    case .failure(let err):
+                        print(err.localizedDescription)
                     }
-                case .failure(let err):
-                    print(err.localizedDescription)
+                }
+                .padding(.horizontal, 17)
+                
+                if isLoading {
+                    Color.white
+                    LottieView("loading")
                 }
             }
-            .padding(.horizontal, 17)
             
             Spacer()
             
@@ -56,7 +64,12 @@ struct CaptureView: View {
                 Spacer()
                 
                 Button(action: {
+                    isLoading = true
+                    cameraService.changeCameraPosition()
                     
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                        isLoading = false
+                    }
                 }, label: {
                     Image("TurnCameraIcon")
                 })

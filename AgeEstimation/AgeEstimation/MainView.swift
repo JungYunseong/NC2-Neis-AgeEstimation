@@ -13,6 +13,8 @@ struct MainView: View {
     let yellowGradientColor: [Color] = [Color(hex: 0xFFED90), Color(hex: 0xFFB800)]
     
     @State var capturedImage: UIImage? = nil
+    @State var selectedImage = UIImage()
+    @State var openGallery: Bool = false
     
     var body: some View {
         NavigationView {
@@ -40,11 +42,14 @@ struct MainView: View {
                     CustomButtonView(title: "카메라로 촬영하기", description: "갤러리에서 가져오기", color: Color.blue)
                 })
                 
-                NavigationLink(destination: {
-                    Text("Gallery")
+                Button(action: {
+                    self.openGallery = true
                 }, label: {
                     CustomButtonView(title: "갤러리에서 가져오기", description: "갤러리의 사진으로 나이를 측정하세요", color: Color.yellow)
                 })
+                .sheet(isPresented: $openGallery) {
+                    ImagePicker(selectedImage: $selectedImage, sourceType: .photoLibrary)
+                }
                 
                 Spacer()
             }
