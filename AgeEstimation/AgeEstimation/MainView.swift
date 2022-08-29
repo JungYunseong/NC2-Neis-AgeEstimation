@@ -30,16 +30,17 @@ struct MainView: View {
                     .bold()
                     .padding()
                 
-                Text("AI를 이용해 현재 얼굴 나이를 측정해보세요.\n아래 버튼을 활용하여 카메라로 현재 모습을 촬영하거나 갤러리의 사진을 이용해 측정할 수 있습니다.")
+                Text("AI를 이용해 현재 얼굴 나이를 측정해보세요.\n아래 버튼을 사용하여 측정해보세요.")
                     .foregroundColor(Color(hex: 0x303030))
                     .multilineTextAlignment(.center)
+                    .padding([.horizontal, .bottom])
                 
                 Spacer()
                 
                 NavigationLink(destination: {
                     CaptureView(capturedImage: $capturedImage)
                 }, label: {
-                    CustomButtonView(title: "카메라로 촬영하기", description: "갤러리에서 가져오기", color: Color.blue)
+                    CustomButtonView(title: "카메라로 촬영하기", description: "카메라로 촬영하여 나이를 측정하세요", color: Color.blue)
                 })
                 
                 Button(action: {
@@ -101,7 +102,7 @@ struct CustomButtonView: View {
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         MainView()
-        CustomButtonView(title: "카메라로 촬영하기", description: "갤러리에서 가져오기", color: Color.blue)
+        CustomButtonView(title: "카메라로 촬영하기", description: "카메라로 촬영하여 나이를 측정하세요", color: Color.blue)
             .previewLayout(.fixed(width: 400, height: 100))
         CustomButtonView(title: "갤러리에서 가져오기", description: "갤러리의 사진으로 나이를 측정하세요", color: Color.yellow)
             .previewLayout(.fixed(width: 400, height: 100))
