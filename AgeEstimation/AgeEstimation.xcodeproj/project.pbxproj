@@ -73,10 +73,7 @@
 				3450EE9528BC865F003F615A /* Extension */,
 				3450EE8B28BB63EC003F615A /* Lottie */,
 				3450EE7D28BB61F3003F615A /* MainView.swift */,
-				3450EE9628BC9077003F615A /* CaptureView.swift */,
-				3450EE9D28BCA960003F615A /* ImagePicker.swift */,
-				3450EE9828BC9154003F615A /* CameraService.swift */,
-				3450EE9A28BC919D003F615A /* CameraView.swift */,
+				3450EEA128BD23D7003F615A /* Capture */,
 				3450EE7F28BB61F4003F615A /* Assets.xcassets */,
 				3450EE8128BB61F4003F615A /* Preview Content */,
 			);
@@ -107,6 +104,17 @@
 				3450EE9328BC8651003F615A /* Color+Extension.swift */,
 			);
 			path = Extension;
+			sourceTree = "<group>";
+		};
+		3450EEA128BD23D7003F615A /* Capture */ = {
+			isa = PBXGroup;
+			children = (
+				3450EE9628BC9077003F615A /* CaptureView.swift */,
+				3450EE9D28BCA960003F615A /* ImagePicker.swift */,
+				3450EE9828BC9154003F615A /* CameraService.swift */,
+				3450EE9A28BC919D003F615A /* CameraView.swift */,
+			);
+			path = Capture;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
