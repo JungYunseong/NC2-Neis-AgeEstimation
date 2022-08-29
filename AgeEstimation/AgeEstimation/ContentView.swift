@@ -57,5 +57,9 @@ struct CustomButtonView: View {
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView()
+        CustomButtonView(title: "카메라로 촬영하기", description: "갤러리에서 가져오기", color: Color.blue)
+            .previewLayout(.fixed(width: 400, height: 100))
+        CustomButtonView(title: "갤러리에서 가져오기", description: "갤러리의 사진으로 나이를 측정하세요", color: Color.yellow)
+            .previewLayout(.fixed(width: 400, height: 100))
     }
 }
