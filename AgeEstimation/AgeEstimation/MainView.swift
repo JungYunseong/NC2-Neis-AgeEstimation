@@ -1,5 +1,5 @@
 //
-//  ContentView.swift
+//  MainView.swift
 //  AgeEstimation
 //
 //  Created by Jung Yunseong on 2022/08/28.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct ContentView: View {
+struct MainView: View {
     
     let blueGradientColor: [Color] = [Color(hex: 0xB2E3FF), Color(hex: 0x00A3FF)]
     let yellowGradientColor: [Color] = [Color(hex: 0xFFED90), Color(hex: 0xFFB800)]
@@ -90,7 +90,7 @@ struct CustomButtonView: View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        MainView()
         CustomButtonView(title: "카메라로 촬영하기", description: "갤러리에서 가져오기", color: Color.blue)
             .previewLayout(.fixed(width: 400, height: 100))
         CustomButtonView(title: "갤러리에서 가져오기", description: "갤러리의 사진으로 나이를 측정하세요", color: Color.yellow)

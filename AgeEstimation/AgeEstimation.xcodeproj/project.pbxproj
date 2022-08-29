@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		3450EE7C28BB61F3003F615A /* AgeEstimationApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3450EE7B28BB61F3003F615A /* AgeEstimationApp.swift */; };
-		3450EE7E28BB61F3003F615A /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3450EE7D28BB61F3003F615A /* ContentView.swift */; };
+		3450EE7E28BB61F3003F615A /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3450EE7D28BB61F3003F615A /* MainView.swift */; };
 		3450EE8028BB61F4003F615A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3450EE7F28BB61F4003F615A /* Assets.xcassets */; };
 		3450EE8328BB61F4003F615A /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3450EE8228BB61F4003F615A /* Preview Assets.xcassets */; };
 		3450EE8A28BB63DE003F615A /* LottieView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3450EE8928BB63DE003F615A /* LottieView.swift */; };
@@ -20,7 +20,7 @@
 /* Begin PBXFileReference section */
 		3450EE7828BB61F3003F615A /* AgeEstimation.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AgeEstimation.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3450EE7B28BB61F3003F615A /* AgeEstimationApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgeEstimationApp.swift; sourceTree = "<group>"; };
-		3450EE7D28BB61F3003F615A /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		3450EE7D28BB61F3003F615A /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		3450EE7F28BB61F4003F615A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3450EE8228BB61F4003F615A /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		3450EE8928BB63DE003F615A /* LottieView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LottieView.swift; sourceTree = "<group>"; };
@@ -60,7 +60,7 @@
 			isa = PBXGroup;
 			children = (
 				3450EE7B28BB61F3003F615A /* AgeEstimationApp.swift */,
-				3450EE7D28BB61F3003F615A /* ContentView.swift */,
+				3450EE7D28BB61F3003F615A /* MainView.swift */,
 				3450EE9528BC865F003F615A /* Extension */,
 				3450EE8B28BB63EC003F615A /* Lottie */,
 				3450EE7F28BB61F4003F615A /* Assets.xcassets */,
@@ -171,7 +171,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3450EE7E28BB61F3003F615A /* ContentView.swift in Sources */,
+				3450EE7E28BB61F3003F615A /* MainView.swift in Sources */,
 				3450EE7C28BB61F3003F615A /* AgeEstimationApp.swift in Sources */,
 				3450EE8A28BB63DE003F615A /* LottieView.swift in Sources */,
 				3450EE9428BC8651003F615A /* Color+Extension.swift in Sources */,
