@@ -28,7 +28,7 @@ struct CameraView: UIViewControllerRepresentable {
         let width = viewController.view.bounds.width - (padding * 2)
         let height = viewController.view.bounds.height - 250
         
-        viewController.view.backgroundColor = .white
+        viewController.view.backgroundColor = .systemBackground
         viewController.view.frame = CGRect(x: 0, y: 0, width: width, height: height)
         viewController.view.layer.addSublayer(cameraService.previewLayer)
         cameraService.previewLayer.frame = viewController.view.bounds
