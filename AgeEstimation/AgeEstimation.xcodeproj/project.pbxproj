@@ -18,6 +18,7 @@
 		3450EE9728BC9077003F615A /* CaptureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3450EE9628BC9077003F615A /* CaptureView.swift */; };
 		3450EE9928BC9154003F615A /* CameraService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3450EE9828BC9154003F615A /* CameraService.swift */; };
 		3450EE9B28BC919D003F615A /* CameraView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3450EE9A28BC919D003F615A /* CameraView.swift */; };
+		3450EE9E28BCA960003F615A /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3450EE9D28BCA960003F615A /* ImagePicker.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +33,7 @@
 		3450EE9628BC9077003F615A /* CaptureView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaptureView.swift; sourceTree = "<group>"; };
 		3450EE9828BC9154003F615A /* CameraService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraService.swift; sourceTree = "<group>"; };
 		3450EE9A28BC919D003F615A /* CameraView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraView.swift; sourceTree = "<group>"; };
+		3450EE9D28BCA960003F615A /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,11 +68,11 @@
 			isa = PBXGroup;
 			children = (
 				3450EE7B28BB61F3003F615A /* AgeEstimationApp.swift */,
-				3450EE7D28BB61F3003F615A /* MainView.swift */,
 				3450EE9528BC865F003F615A /* Extension */,
 				3450EE8B28BB63EC003F615A /* Lottie */,
-				3450EE7D28BB61F3003F615A /* ContentView.swift */,
+				3450EE7D28BB61F3003F615A /* MainView.swift */,
 				3450EE9628BC9077003F615A /* CaptureView.swift */,
+				3450EE9D28BCA960003F615A /* ImagePicker.swift */,
 				3450EE9828BC9154003F615A /* CameraService.swift */,
 				3450EE9A28BC919D003F615A /* CameraView.swift */,
 				3450EE7F28BB61F4003F615A /* Assets.xcassets */,
@@ -184,7 +186,8 @@
 				3450EE7E28BB61F3003F615A /* MainView.swift in Sources */,
 				3450EE9928BC9154003F615A /* CameraService.swift in Sources */,
 				3450EE9728BC9077003F615A /* CaptureView.swift in Sources */,
-				3450EE7E28BB61F3003F615A /* ContentView.swift in Sources */,
+				3450EE9E28BCA960003F615A /* ImagePicker.swift in Sources */,
+				3450EE7E28BB61F3003F615A /* MainView.swift in Sources */,
 				3450EE9B28BC919D003F615A /* CameraView.swift in Sources */,
 				3450EE7C28BB61F3003F615A /* AgeEstimationApp.swift in Sources */,
 				3450EE8A28BB63DE003F615A /* LottieView.swift in Sources */,
