@@ -73,29 +73,29 @@ class CameraService {
     func changeCameraPosition() {
         self.isFront.toggle()
         
-        let session = AVCaptureSession()
-        
-        if let device = AVCaptureDevice.default(.builtInWideAngleCamera, for: .video, position: isFront ? .front : .back) {
-            do {
-                let input = try AVCaptureDeviceInput(device: device)
-                if session.canAddInput(input) {
-                    session.addInput(input)
+        DispatchQueue.global(qos: .userInitiated).async {
+            let session = AVCaptureSession()
+            
+            if let device = AVCaptureDevice.default(.builtInWideAngleCamera, for: .video, position: self.isFront ? .front : .back) {
+                do {
+                    let input = try AVCaptureDeviceInput(device: device)
+                    if session.canAddInput(input) {
+                        session.addInput(input)
+                    }
+                    
+                    if session.canAddOutput(self.output) {
+                        session.addOutput(self.output)
+                    }
+                    self.previewLayer.videoGravity = .resizeAspectFill
+                    self.previewLayer.session = session
+                    
+                    session.startRunning()
+                    self.session = session
+                } catch {
+                    print(error)
                 }
-                
-                if session.canAddOutput(output) {
-                    session.addOutput(output)
-                }
-                previewLayer.videoGravity = .resizeAspectFill
-                previewLayer.session = session
-                
-                session.startRunning()
-                self.session = session
-            } catch {
-                print(error)
             }
         }
-        
-        print(isFront)
     }
 }
 
