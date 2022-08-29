@@ -13,7 +13,7 @@ struct CaptureView: View {
     
     @Binding var capturedImage: UIImage?
     
-    @State var openGallery = true
+    @State var openGallery = false
     @State var selectedImage = UIImage()
     
     var body: some View {
