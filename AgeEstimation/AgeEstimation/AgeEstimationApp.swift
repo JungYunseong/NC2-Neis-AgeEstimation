@@ -11,7 +11,7 @@ import SwiftUI
 struct AgeEstimationApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            MainView()
         }
     }
 }
