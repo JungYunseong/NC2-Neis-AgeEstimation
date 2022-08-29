@@ -13,6 +13,9 @@ struct CaptureView: View {
     
     @Binding var capturedImage: UIImage?
     
+    @State var openGallery = true
+    @State var selectedImage = UIImage()
+    
     var body: some View {
         VStack {
             CameraView(cameraService: cameraService) { result in
@@ -33,11 +36,14 @@ struct CaptureView: View {
             
             HStack {
                 Button(action: {
-                    
+                    openGallery = true
                 }, label: {
                     Image("GalleryIcon")
                 })
                 .padding(40)
+                .sheet(isPresented: $openGallery) {
+                    ImagePicker(selectedImage: $selectedImage, sourceType: .photoLibrary)
+                }
                 
                 Spacer()
                 
