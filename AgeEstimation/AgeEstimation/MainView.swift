@@ -14,7 +14,6 @@ struct MainView: View {
     
     @ObservedObject var selectedImage = SelectedImage()
     
-    @State var capturedImage: UIImage? = nil
     @State var openGallery: Bool = false
     
     var body: some View {
@@ -39,7 +38,7 @@ struct MainView: View {
                 Spacer()
                 
                 NavigationLink(destination: {
-                    CaptureView(selectedImage: selectedImage, capturedImage: $capturedImage)
+                    CaptureView(selectedImage: selectedImage)
                 }, label: {
                     CustomButtonView(title: "카메라로 촬영하기", description: "카메라로 촬영하여 나이를 측정하세요", color: Color.blue)
                 })

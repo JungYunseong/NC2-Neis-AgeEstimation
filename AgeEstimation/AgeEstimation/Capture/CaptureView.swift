@@ -11,10 +11,11 @@ struct CaptureView: View {
     
     let cameraService = CameraService()
     
+    @Environment(\.dismiss) var dismiss
+    
     @ObservedObject var selectedImage: SelectedImage
     
-    @Binding var capturedImage: UIImage?
-    
+    @State var capturedImage: UIImage? = nil
     @State var openGallery = false
     @State var isLoading: Bool = false
     
@@ -26,6 +27,7 @@ struct CaptureView: View {
                     case .success(let photo):
                         if let data = photo.fileDataRepresentation() {
                             capturedImage = UIImage(data: data)
+                            selectedImage.estimationImage = capturedImage!
                         } else {
                             print("Error: no image data found")
                         }
@@ -58,6 +60,9 @@ struct CaptureView: View {
                 
                 Button(action: {
                     cameraService.capturePhoto()
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                        dismiss()
+                    }
                 }, label: {
                     CaptureButtonView()
                 })
@@ -106,6 +111,6 @@ struct CameraView_Previews: PreviewProvider {
     @ObservedObject static var selectedImage = SelectedImage()
     
     static var previews: some View {
-        CaptureView(selectedImage: selectedImage, capturedImage: .constant(nil))
+        CaptureView(selectedImage: selectedImage)
     }
 }
