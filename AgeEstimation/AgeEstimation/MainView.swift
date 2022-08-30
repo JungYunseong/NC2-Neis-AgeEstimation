@@ -52,6 +52,10 @@ struct MainView: View {
                     ImagePicker(selectedImage: $selectedImage.estimationImage, sourceType: .photoLibrary)
                 }
                 
+                NavigationLink(destination: ResultView(selectedImage: selectedImage)) {
+                    Text("sdsdfsdf")
+                }
+                
                 Spacer()
             }
         }

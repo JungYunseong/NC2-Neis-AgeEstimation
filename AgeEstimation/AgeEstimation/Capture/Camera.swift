@@ -12,12 +12,11 @@ class Camera: NSObject, ObservableObject {
     
     let output = AVCapturePhotoOutput()
     
-    @Published var recentImage: UIImage?
+    @Published var capturedImage: UIImage?
     @Published var isCameraBusy = false
     
     var session = AVCaptureSession()
     var videoDeviceInput: AVCaptureDeviceInput!
-    var photoData = Data(count: 0)
     
     // 카메라 셋업 과정을 담당하는 함수,
     func setUpCamera() {
@@ -109,8 +108,7 @@ class Camera: NSObject, ObservableObject {
                     self.session.addInput(self.videoDeviceInput)
                 }
             
-                if let connection =
-                    self.output.connection(with: .video) {
+                if let connection = self.output.connection(with: .video) {
                     if connection.isVideoStabilizationSupported {
                         connection.preferredVideoStabilizationMode = .auto
                     }
@@ -136,8 +134,7 @@ extension Camera: AVCapturePhotoCaptureDelegate {
         guard let imageData = photo.fileDataRepresentation() else { return }
         print("[CameraModel]: Capture routine's done")
         
-        self.photoData = imageData
-        self.recentImage = UIImage(data: imageData)
+        self.capturedImage = UIImage(data: imageData)
         self.isCameraBusy = false
     }
 }

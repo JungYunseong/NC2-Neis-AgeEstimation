@@ -17,15 +17,13 @@ class CameraViewModel: ObservableObject {
     private var isCameraBusy = false
     
     let cameraPreview: AnyView
-    let hapticImpact = UIImpactFeedbackGenerator()
+    
+    @Published var shutterEffect = false
+    @Published var capturedImage: UIImage?
     
     var currentZoomFactor: CGFloat = 1.0
     var lastScale: CGFloat = 1.0
 
-    @Published var showPreview = false
-    @Published var shutterEffect = false
-    @Published var recentImage: UIImage?
-    
     // 초기 세팅
     func configure() {
         model.requestAndCheckPermissions()
@@ -34,7 +32,6 @@ class CameraViewModel: ObservableObject {
     // 사진 촬영
     func capturePhoto() {
         if isCameraBusy == false {
-            hapticImpact.impactOccurred()
             withAnimation(.easeInOut(duration: 0.1)) {
                 shutterEffect = true
             }
@@ -60,9 +57,9 @@ class CameraViewModel: ObservableObject {
         session = model.session
         cameraPreview = AnyView(CameraPreviewView(session: session))
         
-        model.$recentImage.sink { [weak self] (photo) in
+        model.$capturedImage.sink { [weak self] (photo) in
             guard let pic = photo else { return }
-            self?.recentImage = pic
+            self?.capturedImage = pic
         }
         .store(in: &self.subscriptions)
         

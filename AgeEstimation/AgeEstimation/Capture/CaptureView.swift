@@ -23,6 +23,7 @@ struct CaptureView: View {
             ZStack {
                 viewModel.cameraPreview
                     .cornerRadius(47)
+                    .opacity(viewModel.shutterEffect ? 0 : 1)
                     .padding([.horizontal, .bottom], 17)
                     .onAppear {
                         viewModel.configure()
@@ -47,6 +48,7 @@ struct CaptureView: View {
                 Button(action: {
                     viewModel.capturePhoto()
                     DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                        selectedImage.estimationImage = viewModel.capturedImage ?? UIImage()
                         dismiss()
                     }
                 }, label: {
