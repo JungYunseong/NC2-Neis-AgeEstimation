@@ -20,8 +20,9 @@
 		3450EE9B28BC919D003F615A /* CameraView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3450EE9A28BC919D003F615A /* CameraView.swift */; };
 		3450EE9E28BCA960003F615A /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3450EE9D28BCA960003F615A /* ImagePicker.swift */; };
 		3450EEA028BD1BDF003F615A /* loading.json in Resources */ = {isa = PBXBuildFile; fileRef = 3450EE9F28BD1BDF003F615A /* loading.json */; };
-		3450EEA328BD244B003F615A /* resultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3450EEA228BD244A003F615A /* resultView.swift */; };
+		3450EEA328BD244B003F615A /* ResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3450EEA228BD244A003F615A /* ResultView.swift */; };
 		345E13DE28BDD63600B887A3 /* AgePrediction.mlpackage in Sources */ = {isa = PBXBuildFile; fileRef = 345E13DD28BDD63600B887A3 /* AgePrediction.mlpackage */; };
+		345E13E228BDFCFA00B887A3 /* ClassifierModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 345E13E128BDFCFA00B887A3 /* ClassifierModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,8 +39,9 @@
 		3450EE9A28BC919D003F615A /* CameraView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraView.swift; sourceTree = "<group>"; };
 		3450EE9D28BCA960003F615A /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		3450EE9F28BD1BDF003F615A /* loading.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = loading.json; sourceTree = "<group>"; };
-		3450EEA228BD244A003F615A /* resultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = resultView.swift; sourceTree = "<group>"; };
+		3450EEA228BD244A003F615A /* ResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultView.swift; sourceTree = "<group>"; };
 		345E13DD28BDD63600B887A3 /* AgePrediction.mlpackage */ = {isa = PBXFileReference; lastKnownFileType = folder.mlpackage; path = AgePrediction.mlpackage; sourceTree = "<group>"; };
+		345E13E128BDFCFA00B887A3 /* ClassifierModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClassifierModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -78,7 +80,7 @@
 				3450EE9528BC865F003F615A /* Extension */,
 				3450EE8B28BB63EC003F615A /* Lottie */,
 				3450EE7D28BB61F3003F615A /* MainView.swift */,
-				3450EEA228BD244A003F615A /* resultView.swift */,
+				3450EEA228BD244A003F615A /* ResultView.swift */,
 				3450EEA128BD23D7003F615A /* Capture */,
 				3450EE7F28BB61F4003F615A /* Assets.xcassets */,
 				3450EE8128BB61F4003F615A /* Preview Content */,
@@ -127,6 +129,7 @@
 			isa = PBXGroup;
 			children = (
 				345E13DD28BDD63600B887A3 /* AgePrediction.mlpackage */,
+				345E13E128BDFCFA00B887A3 /* ClassifierModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -215,8 +218,9 @@
 				3450EE9E28BCA960003F615A /* ImagePicker.swift in Sources */,
 				3450EE7E28BB61F3003F615A /* MainView.swift in Sources */,
 				3450EE9B28BC919D003F615A /* CameraView.swift in Sources */,
+				345E13E228BDFCFA00B887A3 /* ClassifierModel.swift in Sources */,
 				3450EE7C28BB61F3003F615A /* AgeEstimationApp.swift in Sources */,
-				3450EEA328BD244B003F615A /* resultView.swift in Sources */,
+				3450EEA328BD244B003F615A /* ResultView.swift in Sources */,
 				3450EE8A28BB63DE003F615A /* LottieView.swift in Sources */,
 				3450EE9428BC8651003F615A /* Color+Extension.swift in Sources */,
 				345E13DE28BDD63600B887A3 /* AgePrediction.mlpackage in Sources */,
