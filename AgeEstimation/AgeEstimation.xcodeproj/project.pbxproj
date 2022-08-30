@@ -21,6 +21,7 @@
 		3450EE9E28BCA960003F615A /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3450EE9D28BCA960003F615A /* ImagePicker.swift */; };
 		3450EEA028BD1BDF003F615A /* loading.json in Resources */ = {isa = PBXBuildFile; fileRef = 3450EE9F28BD1BDF003F615A /* loading.json */; };
 		3450EEA328BD244B003F615A /* resultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3450EEA228BD244A003F615A /* resultView.swift */; };
+		345E13DE28BDD63600B887A3 /* AgePrediction.mlpackage in Sources */ = {isa = PBXBuildFile; fileRef = 345E13DD28BDD63600B887A3 /* AgePrediction.mlpackage */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +39,7 @@
 		3450EE9D28BCA960003F615A /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		3450EE9F28BD1BDF003F615A /* loading.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = loading.json; sourceTree = "<group>"; };
 		3450EEA228BD244A003F615A /* resultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = resultView.swift; sourceTree = "<group>"; };
+		345E13DD28BDD63600B887A3 /* AgePrediction.mlpackage */ = {isa = PBXFileReference; lastKnownFileType = folder.mlpackage; path = AgePrediction.mlpackage; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -72,6 +74,7 @@
 			isa = PBXGroup;
 			children = (
 				3450EE7B28BB61F3003F615A /* AgeEstimationApp.swift */,
+				345E13DC28BD28C800B887A3 /* Model */,
 				3450EE9528BC865F003F615A /* Extension */,
 				3450EE8B28BB63EC003F615A /* Lottie */,
 				3450EE7D28BB61F3003F615A /* MainView.swift */,
@@ -118,6 +121,14 @@
 				3450EE9A28BC919D003F615A /* CameraView.swift */,
 			);
 			path = Capture;
+			sourceTree = "<group>";
+		};
+		345E13DC28BD28C800B887A3 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				345E13DD28BDD63600B887A3 /* AgePrediction.mlpackage */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -208,6 +219,7 @@
 				3450EEA328BD244B003F615A /* resultView.swift in Sources */,
 				3450EE8A28BB63DE003F615A /* LottieView.swift in Sources */,
 				3450EE9428BC8651003F615A /* Color+Extension.swift in Sources */,
+				345E13DE28BDD63600B887A3 /* AgePrediction.mlpackage in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
