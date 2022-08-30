@@ -7,7 +7,6 @@
 
 import Vision
 import SwiftUI
-import UIKit
 
 struct ResultView: View {
     
@@ -15,6 +14,7 @@ struct ResultView: View {
     
     @State var faceImageArr = [UIImage]()
     @State var openGallery: Bool = false
+    @State var selectedFace: UIImage?
     @State var resultAge: String = "0"
     @State var classificationLabel = "0"
     
@@ -26,6 +26,9 @@ struct ResultView: View {
                         Image(uiImage: face)
                             .resizable()
                             .frame(width: 80, height: 80)
+                            .onTapGesture {
+                                self.selectedFace = face
+                            }
                     }
                 }
             }
@@ -68,6 +71,13 @@ struct ResultView: View {
             })
             .sheet(isPresented: $openGallery) {
                 ImagePicker(selectedImage: $selectedImage.estimationImage, sourceType: .photoLibrary)
+                    .onDisappear() {
+                        self.detectFaces { (results) in
+                            if let results = results {
+                                self.classificationLabel = "\(results.count)"
+                            }
+                        }
+                    }
             }
         }
         .navigationBarHidden(true)
@@ -78,53 +88,6 @@ struct ResultView: View {
                 }
             }
         }
-    }
-    
-    private func detectFaces(completion: @escaping ([VNFaceObservation]?) -> Void) {
-        let image = selectedImage.estimationImage
-        
-        guard let cgImage = image.cgImage else {
-            return completion(nil)
-        }
-        
-        let detectFaceRequest = VNDetectFaceRectanglesRequest(completionHandler: self.handleFaces)
-        let handler = VNImageRequestHandler(cgImage: cgImage, options: [:])
-        
-        DispatchQueue.global().async {
-            try? handler.perform([detectFaceRequest])
-            
-            guard let observations = detectFaceRequest.results else {
-                return completion(nil)
-            }
-            return completion(observations)
-        }
-    }
-    
-    func handleFaces(request: VNRequest, error: Error?) {
-        if let faces = request.results as? [VNFaceObservation] {
-            self.displayUI(for: faces)
-        }
-    }
-    
-    func displayUI(for faces: [VNFaceObservation]) {
-        
-        let faceImage = selectedImage.estimationImage
-        
-        for (_, face) in faces.enumerated() {
-            let w = face.boundingBox.size.width * faceImage.size.width
-            let h = face.boundingBox.size.height * faceImage.size.height
-            let x = face.boundingBox.origin.x * faceImage.size.width
-            let y = (1 - face.boundingBox.origin.y) * faceImage.size.height - h
-            let cropRect = CGRect(x: x * faceImage.scale, y: y * faceImage.scale, width: w * faceImage.scale, height: h * faceImage.scale)
-            
-            if let faceCGImage = faceImage.cgImage?.cropping(to: cropRect) {
-                let faceUiImage = UIImage(cgImage: faceCGImage, scale: faceImage.scale, orientation: .up)
-                
-                self.faceImageArr.append(faceUiImage)
-            }
-        }
-        
-        print(faceImageArr.indices)
     }
 }
 
