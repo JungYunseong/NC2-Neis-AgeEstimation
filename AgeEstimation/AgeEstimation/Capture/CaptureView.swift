@@ -11,10 +11,11 @@ struct CaptureView: View {
     
     let cameraService = CameraService()
     
+    @ObservedObject var selectedImage: SelectedImage
+    
     @Binding var capturedImage: UIImage?
     
     @State var openGallery = false
-    @State var selectedImage = UIImage()
     @State var isLoading: Bool = false
     
     var body: some View {
@@ -50,7 +51,7 @@ struct CaptureView: View {
                 })
                 .padding(40)
                 .sheet(isPresented: $openGallery) {
-                    ImagePicker(selectedImage: $selectedImage, sourceType: .photoLibrary)
+                    ImagePicker(selectedImage: $selectedImage.estimationImage, sourceType: .photoLibrary)
                 }
                 
                 Spacer()
@@ -101,7 +102,10 @@ struct CaptureButtonView: View {
 }
 
 struct CameraView_Previews: PreviewProvider {
+    
+    @ObservedObject static var selectedImage = SelectedImage()
+    
     static var previews: some View {
-        CaptureView(capturedImage: .constant(nil))
+        CaptureView(selectedImage: selectedImage, capturedImage: .constant(nil))
     }
 }
