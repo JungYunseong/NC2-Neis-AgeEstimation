@@ -15,8 +15,9 @@ struct ResultView: View {
     @Binding var requests: [VNRequest]
     @Binding var faceImageArr: [UIImage]
     @Binding var selectedFace: UIImage?
-    @Binding var resultAge: String
+    @Binding var estimateAge: Int
     
+    @State var resultAge: Int = 0
     @State var isAnalyze: Bool = true
     
     var body: some View {
@@ -35,6 +36,7 @@ struct ResultView: View {
                                 .padding([.leading, .bottom])
                                 .onTapGesture {
                                     self.selectedFace = face
+                                    refresh()
                                     DispatchQueue.global(qos: .userInitiated).async {
                                         self.performFaceAnalysis(on: face)
                                     }
@@ -63,10 +65,10 @@ struct ResultView: View {
                         .font(.title)
                         .bold()
                         .padding()
-                    Text("\(resultAge)살")
-                        .foregroundColor(Color(hex: 0x303030))
-                        .font(.title)
-                        .bold()
+                    Rectangle()
+                        .frame(height: 30)
+                        .foregroundColor(Color.white)
+                        .modifier(CountingNumberAnimationModifier(number: CGFloat(resultAge)))
                 } else {
                     Text("나이를 측정할 얼굴을 선택해주세요")
                         .foregroundColor(Color(hex: 0x303030))
@@ -86,6 +88,9 @@ struct ResultView: View {
         .onAppear() {
             DispatchQueue.main.asyncAfter(deadline: .now() + 2.8) {
                 self.isAnalyze = false
+                withAnimation(.easeInOut(duration: 2)) {
+                    self.resultAge = estimateAge
+                }
             }
         }
     }
@@ -100,6 +105,16 @@ struct ResultView: View {
             print(error)
         }
     }
+    
+    func refresh() {
+        self.resultAge = 0
+        
+        withAnimation(.easeInOut(duration: 2)) {
+            if self.resultAge == 0 {
+                self.resultAge = estimateAge
+            }
+        }
+    }
 }
 
 struct ResultView_Previews: PreviewProvider {
@@ -107,6 +122,6 @@ struct ResultView_Previews: PreviewProvider {
     @ObservedObject static var cameraViewModel = CameraViewModel()
     
     static var previews: some View {
-        ResultView(cameraViewModel: cameraViewModel, requests: .constant([VNRequest()]), faceImageArr: .constant([UIImage()]), selectedFace: .constant(UIImage()), resultAge: .constant("0"))
+        ResultView(cameraViewModel: cameraViewModel, requests: .constant([VNRequest()]), faceImageArr: .constant([UIImage()]), selectedFace: .constant(UIImage()), estimateAge: .constant(0))
     }
 }

@@ -26,6 +26,7 @@
 		345E13EF28BF79F800B887A3 /* analyze.json in Resources */ = {isa = PBXBuildFile; fileRef = 345E13EE28BF79F800B887A3 /* analyze.json */; };
 		345E13F328BF7DCE00B887A3 /* ToastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 345E13F228BF7DCE00B887A3 /* ToastView.swift */; };
 		345E13F528BF9F5900B887A3 /* View+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 345E13F428BF9F5900B887A3 /* View+Extension.swift */; };
+		345E13FB28BFEA6A00B887A3 /* CountingNumberAnimationModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 345E13FA28BFEA6A00B887A3 /* CountingNumberAnimationModifier.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -48,6 +49,7 @@
 		345E13EE28BF79F800B887A3 /* analyze.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = analyze.json; sourceTree = "<group>"; };
 		345E13F228BF7DCE00B887A3 /* ToastView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastView.swift; sourceTree = "<group>"; };
 		345E13F428BF9F5900B887A3 /* View+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Extension.swift"; sourceTree = "<group>"; };
+		345E13FA28BFEA6A00B887A3 /* CountingNumberAnimationModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountingNumberAnimationModifier.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -117,6 +119,7 @@
 				3450EE9328BC8651003F615A /* Color+Extension.swift */,
 				345E13F228BF7DCE00B887A3 /* ToastView.swift */,
 				345E13F428BF9F5900B887A3 /* View+Extension.swift */,
+				345E13FA28BFEA6A00B887A3 /* CountingNumberAnimationModifier.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -236,6 +239,7 @@
 				345E13E228BDFCFA00B887A3 /* ClassifierModel.swift in Sources */,
 				3450EE7C28BB61F3003F615A /* AgeEstimationApp.swift in Sources */,
 				3450EEA328BD244B003F615A /* ResultView.swift in Sources */,
+				345E13FB28BFEA6A00B887A3 /* CountingNumberAnimationModifier.swift in Sources */,
 				345E13F328BF7DCE00B887A3 /* ToastView.swift in Sources */,
 				3450EE8A28BB63DE003F615A /* LottieView.swift in Sources */,
 				345E13E428BE566B00B887A3 /* Camera.swift in Sources */,

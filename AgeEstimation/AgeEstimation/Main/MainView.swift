@@ -18,7 +18,7 @@ struct MainView: View {
     @State var requests = [VNRequest]()
     @State var faceImageArr = [UIImage]()
     @State var selectedFace: UIImage?
-    @State var resultAge: String = "0"
+    @State var estimateAge: Int = 0
     
     var body: some View {
         ZStack {
@@ -30,7 +30,7 @@ struct MainView: View {
                                requests: $requests,
                                faceImageArr: $faceImageArr,
                                selectedFace: $selectedFace,
-                               resultAge: $resultAge)
+                               estimateAge: $estimateAge)
                 }
                 
                 Spacer()

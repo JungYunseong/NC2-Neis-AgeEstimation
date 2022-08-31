@@ -64,7 +64,7 @@ extension MainView {
         if let ageObservation = request.results?.first as? VNClassificationObservation {
             print("age: \(ageObservation.identifier), confidence: \(ageObservation.confidence)")
             
-            self.resultAge = ageObservation.identifier
+            self.estimateAge = Int(ageObservation.identifier) ?? 0
         }
     }
     
