@@ -68,7 +68,6 @@ class Camera: NSObject, ObservableObject {
         let photoSettings = AVCapturePhotoSettings()
         
         self.output.capturePhoto(with: photoSettings, delegate: self)
-        print("[Camera]: Photo's taken")
     }
     
     func changeCamera() {
@@ -77,15 +76,12 @@ class Camera: NSObject, ObservableObject {
         
         switch currentPosition {
         case .unspecified, .front:
-            print("후면카메라로 전환합니다.")
             preferredPosition = .back
             
         case .back:
-            print("전면카메라로 전환합니다.")
             preferredPosition = .front
             
         @unknown default:
-            print("알 수 없는 포지션. 후면카메라로 전환합니다.")
             preferredPosition = .back
         }
         
@@ -132,7 +128,6 @@ extension Camera: AVCapturePhotoCaptureDelegate {
     
     func photoOutput(_ output: AVCapturePhotoOutput, didFinishProcessingPhoto photo: AVCapturePhoto, error: Error?) {
         guard let imageData = photo.fileDataRepresentation() else { return }
-        print("[CameraModel]: Capture routine's done")
         
         self.capturedImage = UIImage(data: imageData)
         self.isCameraBusy = false
