@@ -103,7 +103,7 @@ class Camera: NSObject, ObservableObject {
                 } else {
                     self.session.addInput(self.videoDeviceInput)
                 }
-            
+                
                 if let connection = self.output.connection(with: .video) {
                     if connection.isVideoStabilizationSupported {
                         connection.preferredVideoStabilizationMode = .auto

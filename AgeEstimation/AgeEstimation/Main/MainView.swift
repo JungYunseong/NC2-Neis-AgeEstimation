@@ -15,6 +15,7 @@ struct MainView: View {
     @State var requests = [VNRequest]()
     @State var faceImageArr = [UIImage]()
     @State var selectedFace: UIImage?
+    //    @State var isAnalyze: Bool = false
     @State var openCamera: Bool = false
     @State var openGallery: Bool = false
     @State var resultAge: String = "0"

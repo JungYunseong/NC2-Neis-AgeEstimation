@@ -17,43 +17,53 @@ struct ResultView: View {
     @Binding var selectedFace: UIImage?
     @Binding var resultAge: String
     
+    @State var isAnalyze: Bool = true
+    
     var body: some View {
         VStack {
-            ScrollView(.horizontal, showsIndicators: false) {
-                HStack {
-                    ForEach(faceImageArr, id: \.self) { face in
-                        Image(uiImage: face)
-                            .resizable()
-                            .frame(width: 80, height: 80)
-                            .onTapGesture {
-                                self.selectedFace = face
-                                self.performFaceAnalysis(on: face)
-                            }
+            if isAnalyze {
+                LottieView("analyze")
+            } else {
+                ScrollView(.horizontal, showsIndicators: false) {
+                    HStack {
+                        ForEach(faceImageArr, id: \.self) { face in
+                            Image(uiImage: face)
+                                .resizable()
+                                .frame(width: 80, height: 80)
+                                .onTapGesture {
+                                    self.selectedFace = face
+                                    self.performFaceAnalysis(on: face)
+                                }
+                        }
                     }
                 }
+                
+                Text("나이를 측정할 얼굴을 선택해주세요")
+                
+                Spacer()
+                
+                Text("측정된 얼굴 나이는?")
+                    .foregroundColor(Color(hex: 0x303030))
+                    .font(.title)
+                    .bold()
+                    .padding()
+                Text("\(resultAge)살")
+                    .foregroundColor(Color(hex: 0x303030))
+                    .font(.title)
+                    .bold()
+                
+                Spacer()
+                
+                Text("다른 사진으로 측정하기")
+                    .foregroundColor(Color(hex: 0x888888))
+                    .padding()
             }
-            
-            Text("나이를 측정할 얼굴을 선택해주세요")
-            
-            Spacer()
-            
-            Text("측정된 얼굴 나이는?")
-                .foregroundColor(Color(hex: 0x303030))
-                .font(.title)
-                .bold()
-                .padding()
-            Text("\(resultAge)살")
-                .foregroundColor(Color(hex: 0x303030))
-                .font(.title)
-                .bold()
-            
-            Spacer()
-            
-            Text("다른 사진으로 측정하기")
-                .foregroundColor(Color(hex: 0x888888))
-                .padding()
         }
-        .navigationBarHidden(true)
+        .onAppear() {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 2.8) {
+                self.isAnalyze = false
+            }
+        }
     }
     
     func performFaceAnalysis(on image: UIImage) {
