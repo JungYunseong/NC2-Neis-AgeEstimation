@@ -12,6 +12,7 @@ struct ResultView: View {
     
     @ObservedObject var selectedImage: SelectedImage
     
+    @State var requests = [VNRequest]()
     @State var faceImageArr = [UIImage]()
     @State var openGallery: Bool = false
     @State var selectedFace: UIImage?
@@ -28,6 +29,7 @@ struct ResultView: View {
                             .frame(width: 80, height: 80)
                             .onTapGesture {
                                 self.selectedFace = face
+                                self.performFaceAnalysis(on: face)
                             }
                     }
                 }
@@ -37,20 +39,15 @@ struct ResultView: View {
             
             Spacer()
             
-            Image(uiImage: selectedImage.estimationImage)
-                .resizable()
-                .aspectRatio(contentMode: .fit)
-            Text(self.classificationLabel)
-            
-            //            Text("측정된 얼굴 나이는?")
-            //                .foregroundColor(Color(hex: 0x303030))
-            //                .font(.title)
-            //                .bold()
-            //                .padding()
-            //            Text("\(resultAge)살")
-            //                .foregroundColor(Color(hex: 0x303030))
-            //                .font(.title)
-            //                .bold()
+            Text("측정된 얼굴 나이는?")
+                .foregroundColor(Color(hex: 0x303030))
+                .font(.title)
+                .bold()
+                .padding()
+            Text("\(resultAge)살")
+                .foregroundColor(Color(hex: 0x303030))
+                .font(.title)
+                .bold()
             
             Spacer()
             
@@ -86,6 +83,13 @@ struct ResultView: View {
                 if let results = results {
                     self.classificationLabel = "\(results.count)"
                 }
+            }
+            
+            do {
+                let ageModel = try VNCoreMLModel(for: AgePrediction().model)
+                self.requests.append(VNCoreMLRequest(model: ageModel, completionHandler: handleAgeClassification))
+            } catch {
+                print(error)
             }
         }
     }

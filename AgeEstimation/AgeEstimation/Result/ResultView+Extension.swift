@@ -58,4 +58,23 @@ extension ResultView {
             }
         }
     }
+    
+    func performFaceAnalysis(on image: UIImage) {
+        do {
+            for request in requests {
+                let handler = VNImageRequestHandler(cgImage: image.cgImage!, options: [:])
+                try handler.perform([request])
+            }
+        } catch {
+            print(error)
+        }
+    }
+    
+    func handleAgeClassification(request: VNRequest, error: Error?) {
+        if let ageObservation = request.results?.first as? VNClassificationObservation {
+            print("age: \(ageObservation.identifier), confidence: \(ageObservation.confidence)")
+            
+            self.resultAge = ageObservation.identifier
+        }
+    }
 }
