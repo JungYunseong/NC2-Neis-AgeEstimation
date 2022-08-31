@@ -70,4 +70,15 @@ extension MainView {
             self.resultAge = ageObservation.identifier
         }
     }
+    
+    func analyzeImage() {
+        self.detectFaces { _ in }
+        
+        do {
+            let ageModel = try VNCoreMLModel(for: AgePrediction().model)
+            self.requests.append(VNCoreMLRequest(model: ageModel, completionHandler: handleAgeClassification))
+        } catch {
+            print(error)
+        }
+    }
 }

@@ -43,9 +43,7 @@ struct CaptureView: View {
                     ImagePicker(selectedImage: $selectedImage.estimationImage, sourceType: .photoLibrary)
                 }
                 .onDisappear() {
-                    if self.selectedImage != nil {
-                        dismiss()
-                    }
+                    dismiss()
                 }
                 
                 Spacer()

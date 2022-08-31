@@ -37,14 +37,7 @@ struct MainView: View {
             .fullScreenCover(isPresented: $openCamera) {
                 CaptureView(selectedImage: selectedImage)
                     .onDisappear() {
-                        self.detectFaces { _ in }
-                        
-                        do {
-                            let ageModel = try VNCoreMLModel(for: AgePrediction().model)
-                            self.requests.append(VNCoreMLRequest(model: ageModel, completionHandler: handleAgeClassification))
-                        } catch {
-                            print(error)
-                        }
+                        self.analyzeImage()
                     }
             }
             
@@ -56,14 +49,7 @@ struct MainView: View {
             .sheet(isPresented: $openGallery) {
                 ImagePicker(selectedImage: $selectedImage.estimationImage, sourceType: .photoLibrary)
                     .onDisappear() {
-                        self.detectFaces { _ in }
-                        
-                        do {
-                            let ageModel = try VNCoreMLModel(for: AgePrediction().model)
-                            self.requests.append(VNCoreMLRequest(model: ageModel, completionHandler: handleAgeClassification))
-                        } catch {
-                            print(error)
-                        }
+                        self.analyzeImage()
                     }
             }
             
