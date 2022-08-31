@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		3450EE7C28BB61F3003F615A /* AgeEstimationApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3450EE7B28BB61F3003F615A /* AgeEstimationApp.swift */; };
-		3450EE7E28BB61F3003F615A /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3450EE7D28BB61F3003F615A /* MainView.swift */; };
 		3450EE8028BB61F4003F615A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3450EE7F28BB61F4003F615A /* Assets.xcassets */; };
 		3450EE8328BB61F4003F615A /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3450EE8228BB61F4003F615A /* Preview Assets.xcassets */; };
 		3450EE8A28BB63DE003F615A /* LottieView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3450EE8928BB63DE003F615A /* LottieView.swift */; };
@@ -24,6 +23,7 @@
 		345E13E428BE566B00B887A3 /* Camera.swift in Sources */ = {isa = PBXBuildFile; fileRef = 345E13E328BE566B00B887A3 /* Camera.swift */; };
 		345E13E628BE567C00B887A3 /* CameraViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 345E13E528BE567C00B887A3 /* CameraViewModel.swift */; };
 		345E13EB28BF554300B887A3 /* InitialView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 345E13EA28BF554300B887A3 /* InitialView.swift */; };
+		345E13ED28BF789900B887A3 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3450EE7D28BB61F3003F615A /* MainView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -223,11 +223,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3450EE7E28BB61F3003F615A /* MainView.swift in Sources */,
+				345E13ED28BF789900B887A3 /* MainView.swift in Sources */,
 				345E13EB28BF554300B887A3 /* InitialView.swift in Sources */,
 				3450EE9728BC9077003F615A /* CaptureView.swift in Sources */,
 				3450EE9E28BCA960003F615A /* ImagePicker.swift in Sources */,
-				3450EE7E28BB61F3003F615A /* MainView.swift in Sources */,
 				345E13E228BDFCFA00B887A3 /* ClassifierModel.swift in Sources */,
 				3450EE7C28BB61F3003F615A /* AgeEstimationApp.swift in Sources */,
 				3450EEA328BD244B003F615A /* ResultView.swift in Sources */,
