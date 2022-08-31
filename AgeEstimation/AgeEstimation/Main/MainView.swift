@@ -10,51 +10,95 @@ import SwiftUI
 
 struct MainView: View {
     
-    @ObservedObject var selectedImage = SelectedImage()
+    @ObservedObject var cameraViewModel: CameraViewModel
     
+    @State private var showToast = false
+    @State private var openCamera: Bool = false
+    @State private var openGallery: Bool = false
     @State var requests = [VNRequest]()
     @State var faceImageArr = [UIImage]()
     @State var selectedFace: UIImage?
-    //    @State var isAnalyze: Bool = false
-    @State var openCamera: Bool = false
-    @State var openGallery: Bool = false
     @State var resultAge: String = "0"
     
     var body: some View {
-        VStack {
-            if faceImageArr.count != 0 {
-                ResultView(selectedImage: selectedImage, requests: $requests, faceImageArr: $faceImageArr, selectedFace: $selectedFace, resultAge: $resultAge)
-            } else {
-                InitialView()
+        ZStack {
+            VStack {
+                if faceImageArr.count == 0 {
+                    InitialView()
+                } else {
+                    ResultView(cameraViewModel: cameraViewModel,
+                               requests: $requests,
+                               faceImageArr: $faceImageArr,
+                               selectedFace: $selectedFace,
+                               resultAge: $resultAge)
+                }
+                
+                Spacer()
+                
+                Button(action: {
+                    self.openCamera = true
+                    self.faceImageArr.removeAll()
+                }, label: {
+                    CustomButtonView(title: "카메라로 촬영하기", description: "카메라로 촬영하여 나이를 측정하세요", color: Color.blue)
+                })
+                .fullScreenCover(isPresented: $openCamera) {
+                    CaptureView(cameraViewModel: cameraViewModel)
+                        .onDisappear() {
+                            DispatchQueue.global().asyncAfter(deadline: .now() + 1) {
+                                if faceImageArr.count == 0 {
+                                    self.showToast = true
+                                }
+                                
+                                if faceImageArr.count == 1 {
+                                    self.selectedFace = faceImageArr.first
+                                    self.performFaceAnalysis(on: selectedFace ?? UIImage())
+                                }
+                            }
+                            
+                            self.analyzeImage()
+                        }
+                }
+                
+                Button(action: {
+                    self.openGallery = true
+                }, label: {
+                    CustomButtonView(title: "갤러리에서 가져오기", description: "갤러리의 사진으로 나이를 측정하세요", color: Color.yellow)
+                })
+                .sheet(isPresented: $openGallery) {
+                    ImagePicker(selectedImage: $cameraViewModel.estimationImage, sourceType: .photoLibrary)
+                        .ignoresSafeArea()
+                        .onDisappear() {
+                            DispatchQueue.global().asyncAfter(deadline: .now() + 1) {
+                                if faceImageArr.count == 0 {
+                                    self.showToast = true
+                                }
+                                
+                                if faceImageArr.count == 1 {
+                                    self.selectedFace = faceImageArr.first
+                                    self.performFaceAnalysis(on: selectedFace ?? UIImage())
+                                }
+                            }
+                            
+                            self.analyzeImage()
+                        }
+                }
+                
+                Spacer()
             }
-            
-            Spacer()
-            
-            Button(action: {
-                self.openCamera = true
-            }, label: {
-                CustomButtonView(title: "카메라로 촬영하기", description: "카메라로 촬영하여 나이를 측정하세요", color: Color.blue)
-            })
-            .fullScreenCover(isPresented: $openCamera) {
-                CaptureView(selectedImage: selectedImage)
-                    .onDisappear() {
-                        self.analyzeImage()
-                    }
+            .toast(message: "인식된 얼굴이 없습니다.\n다른 사진을 사용해주세요.",
+                   isShowing: $showToast,
+                   duration: Toast.long)
+        }
+    }
+    
+    func performFaceAnalysis(on image: UIImage) {
+        do {
+            for request in requests {
+                let handler = VNImageRequestHandler(cgImage: image.cgImage!, options: [:])
+                try handler.perform([request])
             }
-            
-            Button(action: {
-                self.openGallery = true
-            }, label: {
-                CustomButtonView(title: "갤러리에서 가져오기", description: "갤러리의 사진으로 나이를 측정하세요", color: Color.yellow)
-            })
-            .sheet(isPresented: $openGallery) {
-                ImagePicker(selectedImage: $selectedImage.estimationImage, sourceType: .photoLibrary)
-                    .onDisappear() {
-                        self.analyzeImage()
-                    }
-            }
-            
-            Spacer()
+        } catch {
+            print(error)
         }
     }
 }
@@ -100,11 +144,11 @@ struct CustomButtonView: View {
 }
 
 struct ContentView_Previews: PreviewProvider {
-    
-    @ObservedObject static var selectedImage = SelectedImage()
-    
+
+    @ObservedObject static var cameraViewModel = CameraViewModel()
+
     static var previews: some View {
-        MainView(selectedImage: self.selectedImage)
+        MainView(cameraViewModel: cameraViewModel)
         CustomButtonView(title: "카메라로 촬영하기", description: "카메라로 촬영하여 나이를 측정하세요", color: Color.blue)
             .previewLayout(.fixed(width: 400, height: 100))
         CustomButtonView(title: "갤러리에서 가져오기", description: "갤러리의 사진으로 나이를 측정하세요", color: Color.yellow)

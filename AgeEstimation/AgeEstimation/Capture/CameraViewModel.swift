@@ -19,7 +19,7 @@ class CameraViewModel: ObservableObject {
     let cameraPreview: AnyView
     
     @Published var shutterEffect = false
-    @Published var capturedImage: UIImage?
+    @Published var estimationImage = UIImage()
     
     var currentZoomFactor: CGFloat = 1.0
     var lastScale: CGFloat = 1.0
@@ -57,9 +57,9 @@ class CameraViewModel: ObservableObject {
         session = model.session
         cameraPreview = AnyView(CameraPreviewView(session: session))
         
-        model.$capturedImage.sink { [weak self] (photo) in
-            guard let pic = photo else { return }
-            self?.capturedImage = pic
+        model.$estimationImage.sink { [weak self] (photo) in
+//            guard let pic = photo else { return }
+            self?.estimationImage = photo
         }
         .store(in: &self.subscriptions)
         

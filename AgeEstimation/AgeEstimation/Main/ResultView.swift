@@ -10,7 +10,7 @@ import SwiftUI
 
 struct ResultView: View {
     
-    @ObservedObject var selectedImage: SelectedImage
+    @ObservedObject var cameraViewModel: CameraViewModel
     
     @Binding var requests: [VNRequest]
     @Binding var faceImageArr: [UIImage]
@@ -24,12 +24,15 @@ struct ResultView: View {
             if isAnalyze {
                 LottieView("analyze")
             } else {
+                //                if faceImageArr.count != 1 {
                 ScrollView(.horizontal, showsIndicators: false) {
-                    HStack {
+                    HStack(spacing: 0) {
                         ForEach(faceImageArr, id: \.self) { face in
                             Image(uiImage: face)
                                 .resizable()
                                 .frame(width: 80, height: 80)
+                                .cornerRadius(8)
+                                .padding([.leading, .bottom])
                                 .onTapGesture {
                                     self.selectedFace = face
                                     self.performFaceAnalysis(on: face)
@@ -37,20 +40,39 @@ struct ResultView: View {
                         }
                     }
                 }
+                .background {
+                    Rectangle()
+                        .foregroundColor(Color.gray.opacity(0.1))
+                        .cornerRadius(17, corners: [.bottomLeft, .bottomRight])
+                        .shadow(color: Color.black.opacity(0.15), radius: 10, x: 0, y: 4)
+                        .ignoresSafeArea()
+                }
                 
-                Text("나이를 측정할 얼굴을 선택해주세요")
+                Text("\(faceImageArr.count)명의 얼굴이 인식되었습니다")
+                    .foregroundColor(Color(hex: 0x888888))
+                    .font(.callout)
+                //                }
                 
                 Spacer()
                 
-                Text("측정된 얼굴 나이는?")
-                    .foregroundColor(Color(hex: 0x303030))
-                    .font(.title)
-                    .bold()
-                    .padding()
-                Text("\(resultAge)살")
-                    .foregroundColor(Color(hex: 0x303030))
-                    .font(.title)
-                    .bold()
+                if selectedFace != nil {
+                    Text("측정된 얼굴 나이는?")
+                        .foregroundColor(Color(hex: 0x303030))
+                        .font(.title)
+                        .bold()
+                        .padding()
+                    Text("\(resultAge)살")
+                        .foregroundColor(Color(hex: 0x303030))
+                        .font(.title)
+                        .bold()
+                } else {
+                    Text("나이를 측정할 얼굴을 선택해주세요")
+                        .foregroundColor(Color(hex: 0x303030))
+                        .font(.title)
+                        .bold()
+                        .multilineTextAlignment(.center)
+                        .padding()
+                }
                 
                 Spacer()
                 
@@ -80,9 +102,9 @@ struct ResultView: View {
 
 struct ResultView_Previews: PreviewProvider {
     
-    @ObservedObject static var selectedImage = SelectedImage()
+    @ObservedObject static var cameraViewModel = CameraViewModel()
     
     static var previews: some View {
-        ResultView(selectedImage: selectedImage, requests: .constant([VNRequest()]), faceImageArr: .constant([UIImage()]), selectedFace: .constant(UIImage()), resultAge: .constant("0"))
+        ResultView(cameraViewModel: cameraViewModel, requests: .constant([VNRequest()]), faceImageArr: .constant([UIImage()]), selectedFace: .constant(UIImage()), resultAge: .constant("0"))
     }
 }

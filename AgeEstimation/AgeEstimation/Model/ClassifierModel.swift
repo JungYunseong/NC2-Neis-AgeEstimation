@@ -8,14 +8,10 @@
 import Vision
 import SwiftUI
 
-class SelectedImage: ObservableObject {
-    @Published var estimationImage = UIImage()
-}
-
 extension MainView {
     
     func detectFaces(completion: @escaping ([VNFaceObservation]?) -> Void) {
-        let image = selectedImage.estimationImage
+        let image = cameraViewModel.estimationImage
         
         guard let cgImage = image.cgImage else {
             return completion(nil)
@@ -42,9 +38,10 @@ extension MainView {
     
     func displayUI(for faces: [VNFaceObservation]) {
         
+        self.selectedFace = nil
         self.faceImageArr.removeAll()
         
-        let faceImage = selectedImage.estimationImage
+        let faceImage = cameraViewModel.estimationImage
         
         for (_, face) in faces.enumerated() {
             let w = face.boundingBox.size.width * faceImage.size.width
@@ -75,7 +72,7 @@ extension MainView {
         self.detectFaces { _ in }
         
         do {
-            let ageModel = try VNCoreMLModel(for: AgePrediction().model)
+            let ageModel = try VNCoreMLModel(for: AgePrediction(configuration: MLModelConfiguration()).model)
             self.requests.append(VNCoreMLRequest(model: ageModel, completionHandler: handleAgeClassification))
         } catch {
             print(error)

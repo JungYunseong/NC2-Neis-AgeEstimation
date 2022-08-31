@@ -12,7 +12,7 @@ class Camera: NSObject, ObservableObject {
     
     let output = AVCapturePhotoOutput()
     
-    @Published var capturedImage: UIImage?
+    @Published var estimationImage = UIImage()
     @Published var isCameraBusy = false
     
     var session = AVCaptureSession()
@@ -129,7 +129,7 @@ extension Camera: AVCapturePhotoCaptureDelegate {
     func photoOutput(_ output: AVCapturePhotoOutput, didFinishProcessingPhoto photo: AVCapturePhoto, error: Error?) {
         guard let imageData = photo.fileDataRepresentation() else { return }
         
-        self.capturedImage = UIImage(data: imageData)
+        self.estimationImage = UIImage(data: imageData) ?? UIImage()
         self.isCameraBusy = false
     }
 }
@@ -151,9 +151,7 @@ struct CameraPreviewView: UIViewRepresentable {
         let view = VideoPreviewView()
         
         view.videoPreviewLayer.session = session
-        view.backgroundColor = .black
         view.videoPreviewLayer.videoGravity = .resizeAspectFill
-        view.videoPreviewLayer.cornerRadius = 0
         view.videoPreviewLayer.connection?.videoOrientation = .portrait
         
         return view

@@ -12,21 +12,19 @@ struct CaptureView: View {
     
     @Environment(\.dismiss) var dismiss
     
-    @ObservedObject var viewModel = CameraViewModel()
-    @ObservedObject var selectedImage: SelectedImage
+    @ObservedObject var cameraViewModel: CameraViewModel
     
-    @State var capturedImage: UIImage? = nil
     @State var openGallery = false
     
     var body: some View {
         VStack {
             ZStack {
-                viewModel.cameraPreview
+                cameraViewModel.cameraPreview
                     .cornerRadius(47)
-                    .opacity(viewModel.shutterEffect ? 0 : 1)
+                    .opacity(cameraViewModel.shutterEffect ? 0 : 1)
                     .padding([.horizontal, .bottom], 17)
                     .onAppear {
-                        viewModel.configure()
+                        cameraViewModel.configure()
                     }
             }
             
@@ -40,7 +38,7 @@ struct CaptureView: View {
                 })
                 .padding(40)
                 .sheet(isPresented: $openGallery) {
-                    ImagePicker(selectedImage: $selectedImage.estimationImage, sourceType: .photoLibrary)
+                    ImagePicker(selectedImage: $cameraViewModel.estimationImage, sourceType: .photoLibrary)
                 }
                 .onDisappear() {
                     dismiss()
@@ -49,9 +47,8 @@ struct CaptureView: View {
                 Spacer()
                 
                 Button(action: {
-                    viewModel.capturePhoto()
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-                        selectedImage.estimationImage = viewModel.capturedImage ?? UIImage()
+                    cameraViewModel.capturePhoto()
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
                         dismiss()
                     }
                 }, label: {
@@ -61,7 +58,7 @@ struct CaptureView: View {
                 Spacer()
                 
                 Button(action: {
-                    viewModel.changeCamera()
+                    cameraViewModel.changeCamera()
                 }, label: {
                     Image("TurnCameraIcon")
                 })
@@ -94,9 +91,11 @@ struct CaptureButtonView: View {
 
 struct CameraView_Previews: PreviewProvider {
     
-    @ObservedObject static var selectedImage = SelectedImage()
+    @ObservedObject static var cameraViewModel = CameraViewModel()
+//    @ObservedObject static var selectedImage = SelectedImage()
     
     static var previews: some View {
-        CaptureView(selectedImage: selectedImage)
+        CaptureView(cameraViewModel: cameraViewModel)
+//        CaptureView(selectedImage: selectedImage)
     }
 }
