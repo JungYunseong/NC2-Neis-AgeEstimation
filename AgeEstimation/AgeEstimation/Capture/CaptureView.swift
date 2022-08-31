@@ -42,6 +42,11 @@ struct CaptureView: View {
                 .sheet(isPresented: $openGallery) {
                     ImagePicker(selectedImage: $selectedImage.estimationImage, sourceType: .photoLibrary)
                 }
+                .onDisappear() {
+                    if self.selectedImage != nil {
+                        dismiss()
+                    }
+                }
                 
                 Spacer()
                 
