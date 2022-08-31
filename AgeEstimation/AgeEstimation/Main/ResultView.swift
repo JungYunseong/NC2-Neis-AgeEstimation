@@ -35,7 +35,9 @@ struct ResultView: View {
                                 .padding([.leading, .bottom])
                                 .onTapGesture {
                                     self.selectedFace = face
-                                    self.performFaceAnalysis(on: face)
+                                    DispatchQueue.global(qos: .userInitiated).async {
+                                        self.performFaceAnalysis(on: face)
+                                    }
                                 }
                         }
                     }
