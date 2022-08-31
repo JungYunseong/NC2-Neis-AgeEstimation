@@ -9,9 +9,12 @@ import SwiftUI
 
 @main
 struct AgeEstimationApp: App {
+    
+    @ObservedObject var selectedImage = SelectedImage()
+    
     var body: some Scene {
         WindowGroup {
-            MainView()
+            MainView(selectedImage: self.selectedImage)
         }
     }
 }

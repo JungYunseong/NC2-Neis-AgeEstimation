@@ -6,38 +6,28 @@
 //
 
 import SwiftUI
+import AVFoundation
 
 struct CaptureView: View {
     
-    let cameraService = CameraService()
+    @Environment(\.dismiss) var dismiss
     
-    @Binding var capturedImage: UIImage?
+    @ObservedObject var viewModel = CameraViewModel()
+    @ObservedObject var selectedImage: SelectedImage
     
+    @State var capturedImage: UIImage? = nil
     @State var openGallery = false
-    @State var selectedImage = UIImage()
-    @State var isLoading: Bool = false
     
     var body: some View {
         VStack {
             ZStack {
-                CameraView(cameraService: cameraService) { result in
-                    switch result {
-                    case .success(let photo):
-                        if let data = photo.fileDataRepresentation() {
-                            capturedImage = UIImage(data: data)
-                        } else {
-                            print("Error: no image data found")
-                        }
-                    case .failure(let err):
-                        print(err.localizedDescription)
+                viewModel.cameraPreview
+                    .cornerRadius(47)
+                    .opacity(viewModel.shutterEffect ? 0 : 1)
+                    .padding([.horizontal, .bottom], 17)
+                    .onAppear {
+                        viewModel.configure()
                     }
-                }
-                .padding(.horizontal, 17)
-                
-                if isLoading {
-                    Color.white
-                    LottieView("loading")
-                }
             }
             
             Spacer()
@@ -50,13 +40,17 @@ struct CaptureView: View {
                 })
                 .padding(40)
                 .sheet(isPresented: $openGallery) {
-                    ImagePicker(selectedImage: $selectedImage, sourceType: .photoLibrary)
+                    ImagePicker(selectedImage: $selectedImage.estimationImage, sourceType: .photoLibrary)
                 }
                 
                 Spacer()
                 
                 Button(action: {
-                    cameraService.capturePhoto()
+                    viewModel.capturePhoto()
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                        selectedImage.estimationImage = viewModel.capturedImage ?? UIImage()
+                        dismiss()
+                    }
                 }, label: {
                     CaptureButtonView()
                 })
@@ -64,12 +58,7 @@ struct CaptureView: View {
                 Spacer()
                 
                 Button(action: {
-                    isLoading = true
-                    cameraService.changeCameraPosition()
-                    
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-                        isLoading = false
-                    }
+                    viewModel.changeCamera()
                 }, label: {
                     Image("TurnCameraIcon")
                 })
@@ -101,7 +90,10 @@ struct CaptureButtonView: View {
 }
 
 struct CameraView_Previews: PreviewProvider {
+    
+    @ObservedObject static var selectedImage = SelectedImage()
+    
     static var previews: some View {
-        CaptureView(capturedImage: .constant(nil))
+        CaptureView(selectedImage: selectedImage)
     }
 }

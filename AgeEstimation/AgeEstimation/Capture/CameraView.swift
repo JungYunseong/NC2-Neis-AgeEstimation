@@ -36,6 +36,7 @@ struct CameraView: UIViewControllerRepresentable {
         
         return viewController
     }
+    
     func makeCoordinator() -> Coordinator {
         Coordinator(self, didFinishProcessingPhoto: didFinishProcessingPhoto)
     }
