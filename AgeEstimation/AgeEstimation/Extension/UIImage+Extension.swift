@@ -5,7 +5,7 @@
 //  Created by Jung Yunseong on 2022/09/02.
 //
 
-import UIKit
+import SwiftUI
 
 extension UIImage {
     func rotate(radians: Float) -> UIImage? {
