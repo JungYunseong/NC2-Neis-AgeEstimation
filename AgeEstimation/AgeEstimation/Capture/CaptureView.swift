@@ -14,6 +14,7 @@ struct CaptureView: View {
     
     @ObservedObject var cameraViewModel: CameraViewModel
     
+    @State var selectedImage = UIImage()
     @State var openGallery = false
     
     var body: some View {
@@ -32,16 +33,21 @@ struct CaptureView: View {
             
             HStack {
                 Button(action: {
-                    openGallery = true
+                    self.selectedImage = UIImage()
+                    self.openGallery = true
                 }, label: {
                     Image("GalleryIcon")
                 })
                 .padding(40)
                 .sheet(isPresented: $openGallery) {
-                    ImagePicker(selectedImage: $cameraViewModel.estimationImage, sourceType: .photoLibrary)
-                }
-                .onDisappear() {
-                    dismiss()
+                    ImagePicker(selectedImage: $selectedImage, sourceType: .photoLibrary)
+                        .ignoresSafeArea()
+                        .onDisappear() {
+                            if selectedImage != UIImage() {
+                                cameraViewModel.estimationImage = selectedImage
+                                dismiss()
+                            }
+                        }
                 }
                 
                 Spacer()
@@ -92,10 +98,8 @@ struct CaptureButtonView: View {
 struct CameraView_Previews: PreviewProvider {
     
     @ObservedObject static var cameraViewModel = CameraViewModel()
-    //    @ObservedObject static var selectedImage = SelectedImage()
     
     static var previews: some View {
         CaptureView(cameraViewModel: cameraViewModel)
-        //        CaptureView(selectedImage: selectedImage)
     }
 }

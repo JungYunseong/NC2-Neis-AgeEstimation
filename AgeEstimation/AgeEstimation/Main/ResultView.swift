@@ -25,7 +25,7 @@ struct ResultView: View {
             if isAnalyze {
                 LottieView("analyze")
             } else {
-//                if faceImageArr.count != 1 {
+                if faceImageArr.count != 1 {
                     ScrollView(.horizontal, showsIndicators: false) {
                         HStack(spacing: 0) {
                             ForEach(faceImageArr, id: \.self) { face in
@@ -55,7 +55,7 @@ struct ResultView: View {
                     Text("\(faceImageArr.count)명의 얼굴이 인식되었습니다")
                         .foregroundColor(Color(hex: 0x888888))
                         .font(.callout)
-//                }
+                }
                 
                 Spacer()
                 
