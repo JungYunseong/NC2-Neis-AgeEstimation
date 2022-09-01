@@ -92,10 +92,10 @@ struct CaptureButtonView: View {
 struct CameraView_Previews: PreviewProvider {
     
     @ObservedObject static var cameraViewModel = CameraViewModel()
-//    @ObservedObject static var selectedImage = SelectedImage()
+    //    @ObservedObject static var selectedImage = SelectedImage()
     
     static var previews: some View {
         CaptureView(cameraViewModel: cameraViewModel)
-//        CaptureView(selectedImage: selectedImage)
+        //        CaptureView(selectedImage: selectedImage)
     }
 }

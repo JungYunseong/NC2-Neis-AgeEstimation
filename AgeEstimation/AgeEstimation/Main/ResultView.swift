@@ -25,37 +25,37 @@ struct ResultView: View {
             if isAnalyze {
                 LottieView("analyze")
             } else {
-                //                if faceImageArr.count != 1 {
-                ScrollView(.horizontal, showsIndicators: false) {
-                    HStack(spacing: 0) {
-                        ForEach(faceImageArr, id: \.self) { face in
-                            Image(uiImage: face)
-                                .resizable()
-                                .frame(width: 80, height: 80)
-                                .cornerRadius(8)
-                                .padding([.leading, .bottom])
-                                .onTapGesture {
-                                    self.selectedFace = face
-                                    refresh()
-                                    DispatchQueue.global(qos: .userInitiated).async {
-                                        self.performFaceAnalysis(on: face)
+                if faceImageArr.count != 1 {
+                    ScrollView(.horizontal, showsIndicators: false) {
+                        HStack(spacing: 0) {
+                            ForEach(faceImageArr, id: \.self) { face in
+                                Image(uiImage: face)
+                                    .resizable()
+                                    .frame(width: 80, height: 80)
+                                    .cornerRadius(8)
+                                    .padding([.leading, .bottom])
+                                    .onTapGesture {
+                                        self.selectedFace = face
+                                        refresh()
+                                        DispatchQueue.global(qos: .userInitiated).async {
+                                            self.performFaceAnalysis(on: face)
+                                        }
                                     }
-                                }
+                            }
                         }
                     }
+                    .background {
+                        Rectangle()
+                            .foregroundColor(Color.gray.opacity(0.1))
+                            .cornerRadius(17, corners: [.bottomLeft, .bottomRight])
+                            .shadow(color: Color.black.opacity(0.15), radius: 10, x: 0, y: 4)
+                            .ignoresSafeArea()
+                    }
+                    
+                    Text("\(faceImageArr.count)명의 얼굴이 인식되었습니다")
+                        .foregroundColor(Color(hex: 0x888888))
+                        .font(.callout)
                 }
-                .background {
-                    Rectangle()
-                        .foregroundColor(Color.gray.opacity(0.1))
-                        .cornerRadius(17, corners: [.bottomLeft, .bottomRight])
-                        .shadow(color: Color.black.opacity(0.15), radius: 10, x: 0, y: 4)
-                        .ignoresSafeArea()
-                }
-                
-                Text("\(faceImageArr.count)명의 얼굴이 인식되었습니다")
-                    .foregroundColor(Color(hex: 0x888888))
-                    .font(.callout)
-                //                }
                 
                 Spacer()
                 
@@ -109,9 +109,11 @@ struct ResultView: View {
     func refresh() {
         self.resultAge = 0
         
-        withAnimation(.easeInOut(duration: 2)) {
-            if self.resultAge == 0 {
-                self.resultAge = estimateAge
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+            withAnimation(.easeInOut(duration: 2)) {
+                if self.resultAge == 0 {
+                    self.resultAge = estimateAge
+                }
             }
         }
     }

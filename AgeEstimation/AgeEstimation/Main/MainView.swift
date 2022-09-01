@@ -144,9 +144,9 @@ struct CustomButtonView: View {
 }
 
 struct ContentView_Previews: PreviewProvider {
-
+    
     @ObservedObject static var cameraViewModel = CameraViewModel()
-
+    
     static var previews: some View {
         MainView(cameraViewModel: cameraViewModel)
         CustomButtonView(title: "카메라로 촬영하기", description: "카메라로 촬영하여 나이를 측정하세요", color: Color.blue)

@@ -128,8 +128,10 @@ extension Camera: AVCapturePhotoCaptureDelegate {
     
     func photoOutput(_ output: AVCapturePhotoOutput, didFinishProcessingPhoto photo: AVCapturePhoto, error: Error?) {
         guard let imageData = photo.fileDataRepresentation() else { return }
+        guard let cgImage = UIImage(data: imageData)?.cgImage else { return }
+        let uiImage = UIImage(cgImage: cgImage)
         
-        self.estimationImage = UIImage(data: imageData) ?? UIImage()
+        self.estimationImage = uiImage
         self.isCameraBusy = false
     }
 }

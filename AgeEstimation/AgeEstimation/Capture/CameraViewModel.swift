@@ -58,7 +58,7 @@ class CameraViewModel: ObservableObject {
         cameraPreview = AnyView(CameraPreviewView(session: session))
         
         model.$estimationImage.sink { [weak self] (photo) in
-//            guard let pic = photo else { return }
+            //            guard let pic = photo else { return }
             self?.estimationImage = photo
         }
         .store(in: &self.subscriptions)
