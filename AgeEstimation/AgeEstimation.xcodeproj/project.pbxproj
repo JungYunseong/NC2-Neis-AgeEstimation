@@ -54,6 +54,7 @@
 		345E13FA28BFEA6A00B887A3 /* CountingNumberAnimationModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountingNumberAnimationModifier.swift; sourceTree = "<group>"; };
 		345E140928C126B900B887A3 /* UIImage+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Extension.swift"; sourceTree = "<group>"; };
 		345E140B28C1397100B887A3 /* LicenseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LicenseView.swift; sourceTree = "<group>"; };
+		34DAF96A28C15F1700059AB2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -87,6 +88,7 @@
 		3450EE7A28BB61F3003F615A /* AgeEstimation */ = {
 			isa = PBXGroup;
 			children = (
+				34DAF96A28C15F1700059AB2 /* Info.plist */,
 				3450EE7B28BB61F3003F615A /* AgeEstimationApp.swift */,
 				345E13DC28BD28C800B887A3 /* Model */,
 				3450EE9528BC865F003F615A /* Extension */,
@@ -386,6 +388,8 @@
 				DEVELOPMENT_TEAM = K6B59X6MS9;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = AgeEstimation/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "How Old Am I";
 				INFOPLIST_KEY_NSCameraUsageDescription = "카메라 기능 사용하기 위한 권한 요청";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -402,7 +406,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -417,6 +421,8 @@
 				DEVELOPMENT_TEAM = K6B59X6MS9;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = AgeEstimation/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "How Old Am I";
 				INFOPLIST_KEY_NSCameraUsageDescription = "카메라 기능 사용하기 위한 권한 요청";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -433,7 +439,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
