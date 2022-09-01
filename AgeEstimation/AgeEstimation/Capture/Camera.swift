@@ -130,8 +130,9 @@ extension Camera: AVCapturePhotoCaptureDelegate {
         guard let imageData = photo.fileDataRepresentation() else { return }
         guard let cgImage = UIImage(data: imageData)?.cgImage else { return }
         let uiImage = UIImage(cgImage: cgImage)
+        let rotatedImage = uiImage.rotate(radians: .pi/2)
         
-        self.estimationImage = uiImage
+        self.estimationImage = rotatedImage ?? UIImage()
         self.isCameraBusy = false
     }
 }
