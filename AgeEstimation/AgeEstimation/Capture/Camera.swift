@@ -12,7 +12,7 @@ class Camera: NSObject, ObservableObject {
     
     let output = AVCapturePhotoOutput()
     
-    @Published var capturedImage: UIImage?
+    @Published var estimationImage = UIImage()
     @Published var isCameraBusy = false
     
     var session = AVCaptureSession()
@@ -68,7 +68,6 @@ class Camera: NSObject, ObservableObject {
         let photoSettings = AVCapturePhotoSettings()
         
         self.output.capturePhoto(with: photoSettings, delegate: self)
-        print("[Camera]: Photo's taken")
     }
     
     func changeCamera() {
@@ -77,15 +76,12 @@ class Camera: NSObject, ObservableObject {
         
         switch currentPosition {
         case .unspecified, .front:
-            print("후면카메라로 전환합니다.")
             preferredPosition = .back
             
         case .back:
-            print("전면카메라로 전환합니다.")
             preferredPosition = .front
             
         @unknown default:
-            print("알 수 없는 포지션. 후면카메라로 전환합니다.")
             preferredPosition = .back
         }
         
@@ -107,7 +103,7 @@ class Camera: NSObject, ObservableObject {
                 } else {
                     self.session.addInput(self.videoDeviceInput)
                 }
-            
+                
                 if let connection = self.output.connection(with: .video) {
                     if connection.isVideoStabilizationSupported {
                         connection.preferredVideoStabilizationMode = .auto
@@ -132,9 +128,11 @@ extension Camera: AVCapturePhotoCaptureDelegate {
     
     func photoOutput(_ output: AVCapturePhotoOutput, didFinishProcessingPhoto photo: AVCapturePhoto, error: Error?) {
         guard let imageData = photo.fileDataRepresentation() else { return }
-        print("[CameraModel]: Capture routine's done")
+        guard let cgImage = UIImage(data: imageData)?.cgImage else { return }
+        let uiImage = UIImage(cgImage: cgImage)
+        let rotatedImage = uiImage.rotate(radians: .pi/2)
         
-        self.capturedImage = UIImage(data: imageData)
+        self.estimationImage = rotatedImage ?? UIImage()
         self.isCameraBusy = false
     }
 }
@@ -156,9 +154,7 @@ struct CameraPreviewView: UIViewRepresentable {
         let view = VideoPreviewView()
         
         view.videoPreviewLayer.session = session
-        view.backgroundColor = .black
         view.videoPreviewLayer.videoGravity = .resizeAspectFill
-        view.videoPreviewLayer.cornerRadius = 0
         view.videoPreviewLayer.connection?.videoOrientation = .portrait
         
         return view
