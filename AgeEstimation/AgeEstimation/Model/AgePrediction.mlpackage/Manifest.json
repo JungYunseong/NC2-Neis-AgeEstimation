@@ -1,0 +1,24 @@
+{
+    "fileFormatVersion": "1.0.0",
+    "itemInfoEntries": {
+        "03C976D0-BA9B-4816-9FB6-5E9565DB1CAD": {
+            "author": "com.apple.CoreML",
+            "description": "CoreML Model Specification",
+            "name": "Age prediction.mlmodel",
+            "path": "com.apple.CoreML/Age prediction.mlmodel"
+        },
+        "42AF3F86-7716-4875-809E-F5255F522054": {
+            "author": "com.apple.CoreML",
+            "description": "External Metadata Overlay",
+            "name": "Metadata.json",
+            "path": "com.apple.CoreML/Metadata.json"
+        },
+        "B7E2CE81-EED5-4656-8F44-505101FCEB54": {
+            "author": "com.apple.CoreML",
+            "description": "External FeatureDescription Overlay",
+            "name": "FeatureDescriptions.json",
+            "path": "com.apple.CoreML/FeatureDescriptions.json"
+        }
+    },
+    "rootModelIdentifier": "03C976D0-BA9B-4816-9FB6-5E9565DB1CAD"
+}

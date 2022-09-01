@@ -1,0 +1,12 @@
+{
+  "MLModelVersionStringKey" : "--",
+  "MLModelDescriptionKey" : "Model that classify image by age.",
+  "MLModelCreatorDefinedKey" : {
+    "com.apple.createml.app.tag" : "78.8",
+    "com.apple.createml.version" : "12.5.1",
+    "com.apple.createml.app.version" : "3.0",
+    "com.apple.coreml.model.preview.type" : "imageClassifier"
+  },
+  "MLModelAuthorKey" : "Jung Yunseong",
+  "MLModelLicenseKey" : "--"
+}
