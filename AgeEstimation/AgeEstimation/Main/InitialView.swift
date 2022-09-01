@@ -8,8 +8,25 @@
 import SwiftUI
 
 struct InitialView: View {
+    
+    @State var isLicenseView: Bool = false
+    
     var body: some View {
         VStack {
+            HStack {
+                Spacer()
+                Button(action: {
+                    self.isLicenseView = true
+                }, label: {
+                    Text("라이선스")
+                        .foregroundColor(Color(hex: 0x303030))
+                        .font(.body)
+                })
+                .padding()
+                .sheet(isPresented: $isLicenseView) {
+                    LicenseView()
+                }
+            }
             Spacer()
             LottieView("faceScan")
                 .frame(height: UIScreen.main.bounds.height / 3)

@@ -28,6 +28,7 @@
 		345E13F528BF9F5900B887A3 /* View+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 345E13F428BF9F5900B887A3 /* View+Extension.swift */; };
 		345E13FB28BFEA6A00B887A3 /* CountingNumberAnimationModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 345E13FA28BFEA6A00B887A3 /* CountingNumberAnimationModifier.swift */; };
 		345E140A28C126B900B887A3 /* UIImage+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 345E140928C126B900B887A3 /* UIImage+Extension.swift */; };
+		345E140C28C1397100B887A3 /* LicenseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 345E140B28C1397100B887A3 /* LicenseView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -52,6 +53,7 @@
 		345E13F428BF9F5900B887A3 /* View+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Extension.swift"; sourceTree = "<group>"; };
 		345E13FA28BFEA6A00B887A3 /* CountingNumberAnimationModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountingNumberAnimationModifier.swift; sourceTree = "<group>"; };
 		345E140928C126B900B887A3 /* UIImage+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Extension.swift"; sourceTree = "<group>"; };
+		345E140B28C1397100B887A3 /* LicenseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LicenseView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -152,6 +154,7 @@
 			children = (
 				3450EE7D28BB61F3003F615A /* MainView.swift */,
 				345E13EA28BF554300B887A3 /* InitialView.swift */,
+				345E140B28C1397100B887A3 /* LicenseView.swift */,
 				3450EEA228BD244A003F615A /* ResultView.swift */,
 			);
 			path = Main;
@@ -238,6 +241,7 @@
 				345E13ED28BF789900B887A3 /* MainView.swift in Sources */,
 				345E13EB28BF554300B887A3 /* InitialView.swift in Sources */,
 				3450EE9728BC9077003F615A /* CaptureView.swift in Sources */,
+				345E140C28C1397100B887A3 /* LicenseView.swift in Sources */,
 				3450EE9E28BCA960003F615A /* ImagePicker.swift in Sources */,
 				345E13E228BDFCFA00B887A3 /* ClassifierModel.swift in Sources */,
 				3450EE7C28BB61F3003F615A /* AgeEstimationApp.swift in Sources */,
