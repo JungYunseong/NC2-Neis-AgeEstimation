@@ -21,9 +21,6 @@ class CameraViewModel: ObservableObject {
     @Published var shutterEffect = false
     @Published var estimationImage = UIImage()
     
-    var currentZoomFactor: CGFloat = 1.0
-    var lastScale: CGFloat = 1.0
-    
     // 초기 세팅
     func configure() {
         model.requestAndCheckPermissions()
